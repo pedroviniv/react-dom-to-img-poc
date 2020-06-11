@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Table from './Table';
 import { toTableStructure } from './tableMapper';
-import { toPng } from 'html-to-image';
 import './style.css';
+import ExportArea from './ExportArea';
+import { PNG, JPEG, SVG } from './ExportArea/imgFormats';
 
 function rowToIdMapper(row) {
   return row.id;
@@ -11,8 +12,7 @@ function rowToIdMapper(row) {
 function App() {
 
   const tableRef = React.createRef(null);
-  const [exportedImgUrl, setExportedImgUrl] = useState('');
-  const [exportError, setExportError] = useState('');
+  const exportAreaRef = React.createRef(null);
 
   const [columns, rows] = toTableStructure(['Id', 'Nome', 'Sobrenome'], [
     {
@@ -27,19 +27,9 @@ function App() {
     },
   ]);
 
-  /**
-   * generates a image of the tableRef.current
-   * @param {*} ev 
-   */
-  function generateImg(ev) {
-    console.log('[generateImg] table ref: ', tableRef);
-    toPng(tableRef.current)
-      .then(dataUrl => {
-        setExportedImgUrl(dataUrl);
-      })
-      .catch(err => {
-        setExportError(err);
-      });
+  function exportImage(format) {
+    console.log('exportAreaRef: ', exportAreaRef);
+    exportAreaRef.current.export(format, tableRef.current);
   }
 
   return (
@@ -47,14 +37,12 @@ function App() {
       <h1>react-dom-to-img-poc</h1>
       <h3>Some table data to be exported</h3>
       <Table columns={columns} rows={rows} rowToIdMapper={rowToIdMapper} setRef={ref => tableRef.current = ref} />
-      <button className='export-button' onClick={generateImg}>Generate Image!</button>
+      <button className='export-button' onClick={ev => exportImage(PNG)}>Generate PNG Image!</button>
+      <button className='export-button' onClick={ev => exportImage(JPEG)}>Generate JPEG Image!</button>
+      <button className='export-button' onClick={ev => exportImage(SVG)}>Generate SVG Image!</button>
 
       <div>
-        <h3>Exported data:</h3>
-        {/* rendering error msg in case something fail in export */}
-        {exportError}
-        {/* rendering img with the exported img url in case something is exported */}
-        {exportedImgUrl ? <img src={exportedImgUrl} alt='table'/> : <></>}
+        <ExportArea ref={exportAreaRef} />
       </div>
     </div>
   );
