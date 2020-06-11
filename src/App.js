@@ -62,7 +62,7 @@ function App() {
       <h3 className='title'>Some table data to be exported</h3>
       <div className="row">
         <div className='col-md-5'>
-          <p class="mb-0">Estes dados foram gerados a partir desta fonte: <a href="https://www.4devs.com.br/gerador_de_pessoas">https://www.4devs.com.br/gerador_de_pessoas</a>  </p>
+          <p class="mb-0">The data below was generated through this website: <a href="https://www.4devs.com.br/gerador_de_pessoas">https://www.4devs.com.br/gerador_de_pessoas</a>  </p>
           <Table columns={columns} rows={rows} rowToIdMapper={rowToIdMapper} setRef={ref => tableRef.current = ref} />
           <div className='btn-group'>
             <button className='btn btn-primary' onClick={ev => exportImage(PNG)}>Generate PNG</button>
