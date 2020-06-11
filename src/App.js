@@ -37,13 +37,11 @@ function App() {
       <h1>react-dom-to-img-poc</h1>
       <h3>Some table data to be exported</h3>
       <Table columns={columns} rows={rows} rowToIdMapper={rowToIdMapper} setRef={ref => tableRef.current = ref} />
-      <button className='export-button' onClick={ev => exportImage(PNG)}>Generate PNG Image!</button>
-      <button className='export-button' onClick={ev => exportImage(JPEG)}>Generate JPEG Image!</button>
-      <button className='export-button' onClick={ev => exportImage(SVG)}>Generate SVG Image!</button>
+      <button className='export-button' onClick={ev => exportImage(PNG)}>Generate PNG</button>
+      <button className='export-button' onClick={ev => exportImage(JPEG)}>Generate JPEG</button>
+      <button className='export-button' onClick={ev => exportImage(SVG)}>Generate SVG</button>
 
-      <div>
-        <ExportArea ref={exportAreaRef} />
-      </div>
+      <ExportArea ref={exportAreaRef} />
     </div>
   );
 }

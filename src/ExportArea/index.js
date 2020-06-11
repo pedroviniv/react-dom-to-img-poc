@@ -45,7 +45,7 @@ export default class ExportArea extends React.Component {
         });
     };
     strategies[JPEG] = dom => {
-      toJpeg(dom)
+      toJpeg(dom, { quality: 0.95 })
         .then(jpegUrl => {
           this.setState({
             jpegUrl,
@@ -83,6 +83,8 @@ export default class ExportArea extends React.Component {
         <h3>JPEG</h3>
         {this.state.jpegError}
         {this.hasExports('jpegUrl') ? <img src={this.state.jpegUrl} alt='jpeg exported img'/> : <></> }
+        <br/>
+        {this.hasExports('jpegUrl') ? <a href={this.state.jpegUrl} download='exported jpeg.jpeg'>Download jpeg</a> : <></> }
         <h3>SVG</h3>
         {this.state.svgError}
         {this.hasExports('svgUrl') ? <img src={this.state.svgUrl} alt='svg exported img'/> : <></> }
