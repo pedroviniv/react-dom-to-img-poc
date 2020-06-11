@@ -77,17 +77,27 @@ export default class ExportArea extends React.Component {
   render() {
     return (
       <div>
-        <h3>PNG</h3>
-        {this.state.pngError}
-        {this.hasExports('pngUrl') ? <img src={this.state.pngUrl} alt='png exported img'/> : <></> }
-        <h3>JPEG</h3>
-        {this.state.jpegError}
-        {this.hasExports('jpegUrl') ? <img src={this.state.jpegUrl} alt='jpeg exported img'/> : <></> }
-        <br/>
-        {this.hasExports('jpegUrl') ? <a href={this.state.jpegUrl} download='exported jpeg.jpeg'>Download jpeg</a> : <></> }
-        <h3>SVG</h3>
-        {this.state.svgError}
-        {this.hasExports('svgUrl') ? <img src={this.state.svgUrl} alt='svg exported img'/> : <></> }
+        <div className="row">
+          <div className="col-md-6">
+            <h3>PNG</h3>
+            {this.state.pngError}
+            {this.hasExports('pngUrl') ? <img src={this.state.pngUrl} alt='png exported img'/> : <></> }
+          </div>
+          <div className="col-md-6">
+            <h3>SVG</h3>
+            {this.state.svgError}
+            {this.hasExports('svgUrl') ? <img src={this.state.svgUrl} alt='svg exported img'/> : <></> }
+          </div>
+        </div>
+        <div className="row">
+        <div className="col-md-6">
+            <h3>JPEG</h3>
+            {this.state.jpegError}
+            {this.hasExports('jpegUrl') ? <img src={this.state.jpegUrl} alt='jpeg exported img'/> : <></> }
+            <br/>
+            {this.hasExports('jpegUrl') ? <a href={this.state.jpegUrl} download='exported jpeg.jpeg'>Download jpeg</a> : <></> }
+          </div>
+      </div>
       </div>
     );
   }

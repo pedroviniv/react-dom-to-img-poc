@@ -15,7 +15,7 @@ const Table = ({setRef, columns, rows, rowToIdMapper}) => {
   const columnsKeys = Object.keys(columns);
 
   return (
-    <table ref={setRef}>
+    <table className='table' ref={setRef}>
       <thead>
         <tr>
           {columnsKeys.map(columnKey => <th key={columnKey}>{columns[columnKey]}</th>)}
